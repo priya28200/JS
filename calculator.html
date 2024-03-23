@@ -1,40 +1,99 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Digital Clock</title>
+    <title>Calculator Project</title>
     <style>
         body {
-            background-color: black;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
 
-        .Clock {
+        .title {
+            margin-bottom: 10px;
+            text-align: center;
+            width: 210px;
             color: green;
-            font-size: 60px;
-            font-family: Orbitron;
-            letter-spacing: 7px;
+            border: solid black;
+            background-color: bisque;
+            padding: 5px;
+        }
+
+        input[type="button"] {
+            background-color: #333;
+            color: white;
+            border: solid black;
+            width: 100%;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #555;
+        }
+
+        input[type="text"] {
+            background-color: white;
+            border: solid black 2px;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 5px;
+            box-sizing: border-box;
+        }
+
+        table {
+            margin: 0 auto;
         }
     </style>
 </head>
 <body>
-<div id="DigitalClock" class="Clock"></div>
+<div class="title">Great Learning Calculator</div>
+<table border="0">
+    <tr>
+        <td colspan="3"><input type="text" id="result"></td>
+        <td><input type="button" value="c" onclick="clr()"></td>
+    </tr>
+    <tr>
+        <td><input type="button" value="1" onclick="display('1')"></td>
+        <td><input type="button" value="2" onclick="display('2')"></td>
+        <td><input type="button" value="3" onclick="display('3')"></td>
+        <td><input type="button" value="/" onclick="display('/')"></td>
+    </tr>
+    <tr>
+        <td><input type="button" value="4" onclick="display('4')"></td>
+        <td><input type="button" value="5" onclick="display('5')"></td>
+        <td><input type="button" value="6" onclick="display('6')"></td>
+        <td><input type="button" value="-" onclick="display('-')"></td>
+    </tr>
+    <tr>
+        <td><input type="button" value="7" onclick="display('7')"></td>
+        <td><input type="button" value="8" onclick="display('8')"></td>
+        <td><input type="button" value="9" onclick="display('9')"></td>
+        <td><input type="button" value="+" onclick="display('+')"></td>
+    </tr>
+    <tr>
+        <td><input type="button" value="." onclick="display('.')"></td>
+        <td><input type="button" value="0" onclick="display('0')"></td>
+        <td><input type="button" value="=" onclick="equate()"></td>
+        <td><input type="button" value="*" onclick="display('*')"></td>
+    </tr>
+</table>
 <script type="text/javascript">
-    function showTime() {
-        const date = new Date();
-        let h = date.getHours() % 12 || 12;
-        const m = date.getMinutes().toString().padStart(2, '0');
-        const s = date.getSeconds().toString().padStart(2, '0');
-        const session = date.getHours() >= 12 ? "PM" : "AM";
-        document.getElementById("DigitalClock").innerHTML = `${h}:${m}:${s} ${session}`;
-        setTimeout(showTime, 1000);
+    const resultField = document.getElementById("result");
+
+    function clr() {
+        resultField.value = "";
     }
 
-    showTime();
+    function display(val) {
+        resultField.value += val;
+    }
+
+    function equate() {
+        resultField.value = eval(resultField.value);
+    }
 </script>
 </body>
 </html>
